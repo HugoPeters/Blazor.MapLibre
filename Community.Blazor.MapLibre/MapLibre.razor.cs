@@ -106,7 +106,7 @@ public partial class MapLibre : ComponentBase, IAsyncDisposable
                 "https://unpkg.com/maplibre-gl@^5.0.0/dist/maplibre-gl.js");
             // Import your JavaScript module
             _jsModule = await JsRuntime.InvokeAsync<IJSObjectReference>("import",
-                "./_content/MapLibre/MapLibre.razor.js");
+                "./_content/Community.Blazor.MapLibre/MapLibre.razor.js");
 
             _dotNetObjectReference = DotNetObjectReference.Create(this);
             // Just making sure the Container is being seeded on Create

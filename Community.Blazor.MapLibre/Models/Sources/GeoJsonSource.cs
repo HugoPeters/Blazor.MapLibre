@@ -18,4 +18,25 @@ public class GeoJsonSource : ISource
     /// </summary>
     [JsonPropertyName("data")]
     public required IFeature Data { get; set; }
+
+    /// <summary>
+    /// Whether to enable clustering.
+    /// </summary>
+    [JsonPropertyName("cluster")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public bool? Cluster { get; set; }
+
+    /// <summary>
+    /// Max zoom to cluster points on.
+    /// </summary>
+    [JsonPropertyName("clusterMaxZoom")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public double? ClusterMaxZoon { get; set; }
+
+    /// <summary>
+    /// Radius of each cluster when clustering points (defaults to 50)
+    /// </summary>
+    [JsonPropertyName("clusterRadius")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public double? ClusterRadius { get; set; }
 }

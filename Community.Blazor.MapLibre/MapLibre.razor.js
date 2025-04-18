@@ -1,6 +1,6 @@
 import splitGeoJSON from './geojson-antimeridian-cut/cut.js'
 
-const mapInstances = {};
+export const mapInstances = {};
 const optionsInstances = {};
 
 /**
