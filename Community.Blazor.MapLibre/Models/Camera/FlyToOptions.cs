@@ -1,3 +1,4 @@
+using Community.Blazor.MapLibre.Models.Padding;
 using System.Text.Json.Serialization;
 
 namespace Community.Blazor.MapLibre.Models.Camera;
@@ -42,7 +43,7 @@ public class FlyToOptions : IAnimationOptions, ICameraOptions
     /// </summary>
     [JsonPropertyName("padding")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    public double? Padding { get; set; }
+    public PaddingOptions? Padding { get; set; }
 
     /// <summary>
     /// The average speed of the animation measured in screenfuls per second, assuming a linear timing curve.
