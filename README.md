@@ -50,6 +50,7 @@
     <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#disclaimer">Disclaimer</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
@@ -80,6 +81,11 @@ Install the package:
 dotnet add package Community.Blazor.MapLibre
 ```
 
+For Blazor Server and Blazor Web App, add this to head of your file to load the css of the maps.
+```html
+<link href="_content/Community.Blazor.MapLibre/maplibre-5.3.0.min.css" rel="stylesheet" />
+```
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
@@ -89,7 +95,7 @@ dotnet add package Community.Blazor.MapLibre
 
 After the package is installed you can use it with simple:
 ```csharp
-<Map />
+<MapLibre />
 ```
 
 You can customize the map more with options using `MapOptions.cs`:
@@ -182,53 +188,53 @@ You can customize the map more with options using `MapOptions.cs`:
 | - isSourceLoaded()                                    | **✅ Complete**               |
 | - isStyleLoaded()                                     | **✅ Complete**               |
 | - isZooming()                                         | **✅ Complete**               |
-| - jumpTo()                                            | **☑️ Partially Implemented** |
+| - jumpTo()                                            | **✅ Complete**               |
 | - listens()                                           | **✅ Complete**               |
 | - listImages()                                        | **✅ Complete**               |
 | - loaded()                                            | **✅ Complete**               |
 | - loadImage()                                         | **☑️ Partially Implemented** |
 | - moveLayer()                                         | **✅ Complete**               |
-| - panBy()                                             | **☑️ Partially Implemented** |
-| - panTo()                                             | **☑️ Partially Implemented** |
-| - project()                                           | **☑️ Partially Implemented** |
+| - panBy()                                             | **✅ Complete**               |
+| - panTo()                                             | **✅ Complete**               |
+| - project()                                           | **✅ Complete**               |
 | - queryRenderedFeatures()                             | **☑️ Partially Implemented** |
-| - querySourceFeatures()                               | **☑️ Partially Implemented** |
-| - queryTerrainElevation()                             | **☑️ Partially Implemented** |
+| - querySourceFeatures()                               | **✅ Complete**               |
+| - queryTerrainElevation()                             | **✅ Complete**               |
 | - redraw()                                            | **✅ Complete**               |
 | - remove()                                            | **✅ Complete**               |
 | - removeControl()                                     | **☑️ Partially Implemented** |
-| - removeFeatureState()                                | **☑️ Partially Implemented** |
+| - removeFeatureState()                                | **✅ Complete**               |
 | - removeImage()                                       | **✅ Complete**               |
 | - removeLayer()                                       | **✅ Complete**               |
 | - removeSource()                                      | **✅ Complete**               |
 | - removeSprite()                                      | **✅ Complete**               |
-| - resetNorth()                                        | **☑️ Partially Implemented** |
-| - resetNorthPitch()                                   | **☑️ Partially Implemented** |
-| - resize()                                            | **☑️ Partially Implemented** |
-| - rotateTo()                                          | **☑️ Partially Implemented** |
+| - resetNorth()                                        | **✅ Complete**               |
+| - resetNorthPitch()                                   | **✅ Complete**               |
+| - resize()                                            | **✅ Complete**               |
+| - rotateTo()                                          | **✅ Complete**               |
 | - setBearing()                                        | **✅ Complete**               |
-| - setCenter()                                         | **☑️ Partially Implemented** |
+| - setCenter()                                         | **✅ Complete**               |
 | - setCenterClampedToGround()                          | **✅ Complete**               |
 | - setCenterElevation()                                | **✅ Complete**               |
-| - setFeatureState()                                   | **☑️ Partially Implemented** |
+| - setFeatureState()                                   | **✅ Complete**               |
 | - setZoom()                                           | **✅ Complete**               |
 | - setStyle()                                          | **☑️ Partially Implemented** |
 | - stop()                                              | **✅ Complete**               |
-| - unproject()                                         | **☑️ Partially Implemented** |
+| - unproject()                                         | **✅ Complete**               |
 | - updateImage()                                       | **☑️ Partially Implemented** |
-| - zoomIn()                                            | **☑️ Partially Implemented** |
-| - zoomOut()                                           | **☑️ Partially Implemented** |
-| - zoomTo()                                            | **☑️ Partially Implemented** |
+| - zoomIn()                                            | **✅ Complete**               |
+| - zoomOut()                                           | **✅ Complete**               |
+| - zoomTo()                                            | **✅ Complete**               |
 
 </details>
 
 | Feature     | Status            |
 |-------------|-------------------|
-| **Markers** | **❌ Not started** |
+| **Markers** | **✅ Complete** |
 
-| Feature   | Status            |
-|-----------|-------------------|
-| **Popup** | **❌ Not started** |
+| Feature   | Status           |
+|-----------|------------------|
+| **Popup** | **✅ Complete**  |
 
 
 
@@ -260,12 +266,32 @@ Don't forget to give the project a star! Thanks again!
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+<!-- DISCLAIMER -->
+## Disclaimer
+
+**Community.Blazor.MapLibre** is provided "as-is," without warranties of any kind, express or implied. The author(s) make no guarantees regarding the accuracy, reliability, or suitability of the software for any particular purpose.
+
+By using this library, you acknowledge that:
+
+- The software is **open-source and freely available**, with no assurances of ongoing maintenance or support.
+- The author(s) are **not liable for any damages, data loss, or operational failures** resulting from its use.
+- Users assume full responsibility for implementing proper **security and compliance measures** when integrating this library into their applications.
+- The software may change over time, and updates may introduce modifications or remove certain features.
+
+Use of **Community.Blazor.MapLibre** is **at your own risk**, and contributions or modifications by third parties are not officially vetted. If you encounter issues or bugs, reporting them via the official repository is encouraged, but resolution is not guaranteed.
+
+For licensing details, refer to the **[Unlicense](https://choosealicense.com/licenses/unlicense/)** statement included with the repository.
 
 
 <!-- LICENSE -->
 ## License
 
-Distributed under the Unlicense License. See `UNLICENSE` for more information.
+This project, **Community.Blazor.MapLibre**, is released under the **[Unlicense](https://choosealicense.com/licenses/unlicense/)**, meaning it is free and unencumbered software dedicated to the public domain.
+
+However, this library is a wrapper around **MapLibre GL JS**, which is licensed under the **BSD-3-Clause** license. Users must comply with the original library’s license when using this wrapper.
+
+For details on MapLibre GL JS licensing, visit: [MapLibre GL JS License](https://github.com/maplibre/maplibre-gl-js/blob/main/LICENSE.txt).
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

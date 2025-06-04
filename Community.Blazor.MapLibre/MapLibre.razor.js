@@ -26,9 +26,13 @@ function cutAntiMeridian(container, data) {
  */
 export function initializeMap(options, dotnetReference) {
     const map = new maplibregl.Map(options);
-    
+
     optionsInstances[options.container] = options;
     mapInstances[options.container] = map;
+
+    map.on('style.load', () => {
+        dotnetReference.invokeMethodAsync("OnStyleLoadCallback")
+    });
 
     map.on('load', function () {
         dotnetReference.invokeMethodAsync("OnLoadCallback")
@@ -66,11 +70,11 @@ export function on(container, eventType, dotnetReference, layerIds) {
  *                               "AttributionControl", "FullscreenControl", "GeolocateControl",
  *                               "GlobeControl", "LogoControl", "NavigationControl", "ScaleControl",
  *                               and "TerrainControl".
- * @param {Object} options - Configuration options for the control instance being added.
+ * @param {string} position - position on the map to which the control will be added. Valid values are 'top-left', 'top-right', 'bottom-left', and 'bottom-right'. Defaults to 'top-right'.
  *
  * @throws {Error} Logs a warning if the specified control type is not supported.
  */
-export function addControl(container, controlType, options) {
+export function addControl(container, controlType, position) {
     const map = mapInstances[container];
     const controlsMap = {
         AttributionControl: maplibregl.AttributionControl,
@@ -85,7 +89,7 @@ export function addControl(container, controlType, options) {
 
     const ControlClass = controlsMap[controlType];
     if (ControlClass) {
-        const control = new ControlClass(options);
+        const control = new ControlClass(position);
         map.addControl(control);
     } else {
         console.warn(`Control type '${controlType}' is not supported.`);
@@ -142,7 +146,7 @@ export function addSource(container, id, source) {
 
 /**
  * Updates the data of a specific GeoJSON source
- * 
+ *
  * @param {string} container - The identifier for the map container instance.
  * @param {string} id - The unique identifier for the source you wish to update.
  * @param {Object} data - The GeoJSON data you wish to apply to the source
@@ -1064,6 +1068,15 @@ export function setVerticalFieldOfView(container, fov, eventData) {
 }
 
 /**
+ * Sets the map's projection.
+ * @param {string} container - The map container.
+ * @param {object} projection - The projection object.
+ */
+export function setProjection(container, projection) {
+    mapInstances[container].setProjection(projection);
+}
+
+/**
  * Sets the map's zoom level.
  * @param {string} container - The map container.
  * @param {number} zoom - The desired zoom level (0-20).
@@ -1149,6 +1162,19 @@ export function zoomOut(container, options, eventData) {
  */
 export function zoomTo(container, zoom, options, eventData) {
     mapInstances[container].zoomTo(zoom, options, eventData);
+}
+
+export function createPopup(container, settings, options) {
+    new maplibregl.Popup(options)
+        .setLngLat([settings.lngLat.lng, settings.lngLat.lat])
+        .setHTML(settings.content)
+        .addTo(mapInstances[container]);
+}
+
+export function createMarker(container, options, position) {
+    new maplibregl.Marker(options)
+        .setLngLat([position.lng, position.lat])
+        .addTo(mapInstances[container]);
 }
 
 /**
