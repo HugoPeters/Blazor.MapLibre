@@ -1,0 +1,66 @@
+@page "/"
+@inject NavigationManager NavigationManager
+
+<div class="container my-4">
+    <div class="text-center mb-4">
+        <h2 class="display-5 fw-bold"><code style="font-size: xxx-large">Blazor.MapLibre</code> Examples</h2>
+        <p class="lead">
+            Explore various examples demonstrating the capabilities of Blazor.MapLibre
+        </p>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-12 col-xl-10">
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 justify-content-center">
+                @foreach (var item in _samplesList)
+                {
+                    <div class="col">
+                        <div class="card h-100 shadow-sm @item.Class" style="cursor: pointer;" @onclick="() => NavigateToPage(item.Url)">
+                            <div style="height: 200px; overflow: hidden;">
+                                <img class="card-img-top w-100 h-100" style="object-fit: cover;" src="@item.ImageUrl" alt="@item.Title"/>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">@item.Title</h5>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@code
+{
+    private readonly List<MapSampleItem> _samplesList =
+    [
+        new() { Title = "Load GeoJSON", Url = "examples/load-geojson", ImageUrl = "img/examples/load-geojson.png" },
+        new() { Title = "Add Listener", Url = "examples/add-listener", ImageUrl = "img/examples/add-listener.png" },
+        new() { Title = "Fit Bounds", Url = "examples/fit-bounds", ImageUrl = "img/examples/fit-bounds.png" },
+        new() { Title = "Create Popup", Url = "examples/add-popup", ImageUrl = "img/examples/add-popup.png" },
+        new() { Title = "Render Globe", Url = "examples/render-globe", ImageUrl = "img/examples/render-globe.png" },
+        new() { Title = "Mapbox Draw GLJS", Url = "examples/mapbox-gl-draw", ImageUrl = "img/examples/mapbox-gl-draw.png" },
+        new() { Title = "Add Marker", Url = "examples/add-marker", ImageUrl = "img/examples/add-marker.png" },
+        new() { Title = "Multiple Maps", Url = "examples/multiple-maps", ImageUrl = "img/examples/multiple-maps.png" },
+    ];
+
+    // ExampleItem class to store information
+    private class MapSampleItem
+    {
+        public string Title { get; set; } = string.Empty;
+        public string Url { get; set; } = string.Empty;
+        public string ImageUrl { get; set; } = string.Empty;
+        public string? Class { get; set; }
+    }
+
+    /// <summary>
+    /// Handles the click event on the card and navigates to the specified URL if it is not null or empty.
+    /// </summary>
+    private void NavigateToPage(string? targetUrl)
+    {
+        if (!string.IsNullOrEmpty(targetUrl))
+        {
+            NavigationManager.NavigateTo(targetUrl);
+        }
+    }
+}
