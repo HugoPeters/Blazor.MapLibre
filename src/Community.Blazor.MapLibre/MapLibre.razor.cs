@@ -133,25 +133,33 @@ public partial class MapLibre : ComponentBase, IAsyncDisposable
     {
         if (firstRender)
         {
-            await JsRuntime.InvokeAsync<IJSObjectReference>("import",
-                "./_content/Community.Blazor.MapLibre/maplibre-5.12.0.min.js");
-
-            // Import your JavaScript module
-            _jsModule = await JsRuntime.InvokeAsync<IJSObjectReference>("import",
-                "./_content/Community.Blazor.MapLibre/MapLibre.razor.js");
-
-            _dotNetObjectReference = DotNetObjectReference.Create(this);
-
-            // Just making sure the Container is being seeded on Create
-            Options.Container = MapId;
-
-            // Initialize the MapLibre map
-            _mapObject = await _jsModule.InvokeAsync<IJSObjectReference>("initializeMap", Options, _dotNetObjectReference);
-
-            // Load the plugins after the map has been initialized
-            foreach (var plugin in _plugins)
+            try
             {
-                await plugin.Initialize(_mapObject, JsRuntime);
+                await JsRuntime.InvokeAsync<IJSObjectReference>("import",
+                    "./_content/Community.Blazor.MapLibre/maplibre-5.12.0.min.js");
+
+                // Import your JavaScript module
+                _jsModule = await JsRuntime.InvokeAsync<IJSObjectReference>("import",
+                    "./_content/Community.Blazor.MapLibre/MapLibre.razor.js");
+
+                _dotNetObjectReference = DotNetObjectReference.Create(this);
+
+                // Just making sure the Container is being seeded on Create
+                Options.Container = MapId;
+
+                // Initialize the MapLibre map
+                _mapObject =
+                    await _jsModule.InvokeAsync<IJSObjectReference>("initializeMap", Options, _dotNetObjectReference);
+
+                // Load the plugins after the map has been initialized
+                foreach (var plugin in _plugins)
+                {
+                    await plugin.Initialize(_mapObject, JsRuntime);
+                }
+            }
+            catch (Exception)
+            {
+                // ignored
             }
         }
     }
